@@ -593,6 +593,96 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &624305760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 624305762}
+  - component: {fileID: 624305761}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &624305761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624305760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be990958e14c144fae305074709bd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipController:
+    name: Test
+    clipIndex: 0
+    keyframeIndex: 0
+    clipTimeStep: 0
+    keyframeTimeStep: 0
+    playbackStep: 0
+    clipTimeSec: 0
+    keyframeSec: 0
+    playbackSec: 0
+    playbackStepPerSec: 0
+    playbackSecPerStep: 0
+    clipParam: 0
+    keyframeParam: 0
+    clipPool:
+      clips: []
+      keyframes: []
+      samples: []
+      clipCount: 0
+      keyframeCount: 0
+      sampleCount: 0
+    clip:
+      name: 
+      index: 0
+      firstIndex: 0
+      finalIndex: 0
+      keyframeCount: 0
+      keyframeDirection: 0
+      durationInStep: 0
+      durationSec: 0
+      durationInv: 0
+      forward:
+        offset: 0
+        clipIndex: 0
+        flag: 0
+      reverse:
+        offset: 0
+        clipIndex: 0
+        flag: 0
+    keyframe:
+      index: 0
+      sampleIndex0: 0
+      sampleIndex1: 0
+      durationInSteps: 0
+      durationSec: 0
+      durationInv: 0
+--- !u!4 &624305762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624305760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,3 +1287,4 @@ SceneRoots:
   - {fileID: 394440602}
   - {fileID: 961659818}
   - {fileID: 175495193}
+  - {fileID: 624305762}
