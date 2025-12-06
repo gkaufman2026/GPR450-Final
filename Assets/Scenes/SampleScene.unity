@@ -623,17 +623,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipController:
-    name: Spider
+    name: spider
     clipIndex: 0
     keyframeIndex: 0
     clipTimeStep: 0
     keyframeTimeStep: 0
-    playbackStep: 30
+    playbackStep: 0
     clipTimeSec: 0
     keyframeSec: 0
-    playbackSec: 1
-    playbackStepPerSec: 30
-    playbackSecPerStep: 0.03
+    playbackSec: 10
+    playbackStepPerSec: 10
+    playbackSecPerStep: 10
     clipParam: 0
     keyframeParam: 0
     clipPool:
@@ -654,7 +654,7 @@ MonoBehaviour:
         reverse:
           offset: 0
           clipIndex: 0
-          flag: 0
+          flag: 5
       keyframes:
       - index: 0
         sampleIndex0: 1
@@ -733,6 +733,7 @@ MonoBehaviour:
       durationInSteps: 0
       durationSec: 0
       durationInv: 0
+  keyframeStartOffset: 4
 --- !u!4 &624305762
 Transform:
   m_ObjectHideFlags: 0

@@ -25,29 +25,6 @@ public class KeyframeController {
         public int timeStep, timeSec;
     }
 
-    public static int sampleInit(Sample outSample, int timeStep, float playbackStep) {
-        if (outSample != null && outSample.index >= 0 && playbackStep > 0) {
-            outSample.timeStep = timeStep;
-            outSample.timeSec = (int)(timeStep / playbackStep);
-            return outSample.index;
-        }
-        return 0;
-    }
-
-    public static int keyframeInit(Keyframe outKeyframe, Sample sample0, Sample sample1, float playbackStep) {
-        if (outKeyframe != null && sample0 != null && sample1 != null && playbackStep > 0) {
-            if (outKeyframe.index >= 0 && sample0.index >= 0 && sample1.index >= 0) {
-                outKeyframe.sampleIndex0 = sample0.index;
-                outKeyframe.sampleIndex1 = sample1.index;
-                outKeyframe.durationInSteps = sample1.timeStep - sample0.timeStep;
-                outKeyframe.durationSec = (int)(outKeyframe.durationInSteps / playbackStep);
-                outKeyframe.durationInv = outKeyframe.durationSec;
-                return outKeyframe.index;
-            }
-        }
-        return 0;
-    }
-
     [Serializable]
     public class Keyframe {
         public int index;
@@ -110,6 +87,29 @@ public class KeyframeController {
                 ClipTransitionInit(outClip.reverse, ClipTransitionFlag.STOP, 0, outClip);
             }
         }
+    }
+
+    public static int sampleInit(Sample outSample, int timeStep, float playbackStep) {
+        if (outSample != null && outSample.index >= 0 && playbackStep > 0) {
+            outSample.timeStep = timeStep;
+            outSample.timeSec = (int)(timeStep / playbackStep);
+            return outSample.index;
+        }
+        return 0;
+    }
+
+    public static int keyframeInit(Keyframe outKeyframe, Sample sample0, Sample sample1, float playbackStep) {
+        if (outKeyframe != null && sample0 != null && sample1 != null && playbackStep > 0) {
+            if (outKeyframe.index >= 0 && sample0.index >= 0 && sample1.index >= 0) {
+                outKeyframe.sampleIndex0 = sample0.index;
+                outKeyframe.sampleIndex1 = sample1.index;
+                outKeyframe.durationInSteps = sample1.timeStep - sample0.timeStep;
+                outKeyframe.durationSec = (int)(outKeyframe.durationInSteps / playbackStep);
+                outKeyframe.durationInv = outKeyframe.durationSec;
+                return outKeyframe.index;
+            }
+        }
+        return 0;
     }
 
     public static int GetIndexInPool(ClipPool clipPool, string name) {

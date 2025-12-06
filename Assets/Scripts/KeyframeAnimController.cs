@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 public class KeyframeAnimController { 
     [Serializable]
@@ -11,8 +11,8 @@ public class KeyframeAnimController {
         public float clipParam, keyframeParam;
 
         public KeyframeController.ClipPool clipPool;
-        public KeyframeController.Clip clip;
-        public KeyframeController.Keyframe keyframe;
+        /*[HideInInspector]*/ public KeyframeController.Clip clip;
+        /*[HideInInspector]*/ public KeyframeController.Keyframe keyframe;
     }
 
     public static int Init(ClipController ctrlOut, string name, KeyframeController.ClipPool pool, int clipPoolIndex, int playbackStep, float playbackStepSec) {
