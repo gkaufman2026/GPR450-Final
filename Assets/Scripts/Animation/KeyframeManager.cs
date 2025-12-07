@@ -9,9 +9,9 @@ public class KeyframeManager : MonoBehaviour {
     [Header("Settings")]
     public bool isPlaying = true;
     public int keyframeStartOffset = 4;
-    private int index;
-
+    
     private int hClipCount, hSampleCount, hKeyframeCount;
+    private int index;
     private const int FRAME_RATE = 24;
 
     void Start() {
@@ -36,6 +36,7 @@ public class KeyframeManager : MonoBehaviour {
             KeyframeController.ClipInit(clipController.clipPool.clips[i], clipController.clipPool.clips[i].name,
                 clipController.clipPool.keyframes[i],
                 clipController.clipPool.keyframes[i]);
+
             KeyframeController.GetClipDuration(clipController.clipPool, i, FRAME_RATE);
         }
 
@@ -44,8 +45,8 @@ public class KeyframeManager : MonoBehaviour {
             index, clipController.playbackStep, clipController.playbackStepPerSec);
     }
 
-    // Update is called once per frame
     void FixedUpdate() {
+        // Allowing the clip time to be paused
         if (isPlaying) {
             KeyframeAnimController.Update(clipController, Time.fixedDeltaTime);
         }

@@ -10,16 +10,17 @@ public class SpiderGUI : MonoBehaviour {
     private int startKFIndex;
     private float startPlaybackSec;
 
-
     private void Awake() {
         if (instance == null) {
             Debug.LogError("Missing hook into U Im Gui");
         }
 
+        // Event listener
         instance.Layout += OnLayout;
         instance.OnInitialize += OnInitialize;
         instance.OnDeinitialize += OnDeinitialize;
 
+        // Saving values loaded on RT
         startKFIndex = kfManager.clipController.keyframeIndex;
         startPlaybackSec = kfManager.clipController.playbackSec;
     }
@@ -37,19 +38,19 @@ public class SpiderGUI : MonoBehaviour {
     }
 
     private void init() {
+        // Stops clip time
         ImGui.Checkbox("Is Playing", ref kfManager.isPlaying);
         ImGui.SameLine();
         ImGui.Dummy(new Vector2(135, 0)); // Creates space on X-axis between checkbox & button
         ImGui.SameLine();
-        if (ImGui.Button("Reset Clip Ctrl")) {
-            resetClipCtrl();
-        }
+        if (ImGui.Button("Reset Clip Ctrl")) { resetClipCtrl(); }
 
-        if (ImGui.CollapsingHeader("Clip Controller")) {
-            initClipController();
-        }
+        if (ImGui.CollapsingHeader("Clip Controller")) { initClipController(); }
     }
 
+    /// <summary>
+    /// Initalizing all Clip Controller variables for visualization outside of engine - Jerry
+    /// </summary>
     private void initClipController() {
         ImGui.Text("Name: " + kfManager.clipController.name);
         ImGui.SliderInt("Keyframe Index", ref kfManager.clipController.keyframeIndex, 0, kfManager.clipController.clip.finalIndex);
@@ -100,6 +101,9 @@ public class SpiderGUI : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles Reset of Clip Controller - Jerry
+    /// </summary>
     private void resetClipCtrl() {
         kfManager.clipController.keyframeIndex = startKFIndex;
         kfManager.clipController.playbackSec = startPlaybackSec;

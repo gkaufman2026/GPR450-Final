@@ -22,7 +22,7 @@ public class MoveEffector : MonoBehaviour {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit)) {
-                    Vector3 spawn = hit.point + new Vector3(0, 1, 0);
+                    Vector3 spawn = hit.point + spawnOffset;
                     if (hit.transform.CompareTag("Floor")) {
                         if (spawnedPrefab == null) {
                             spawnedPrefab = Instantiate(prefab, spawn, Quaternion.identity);
@@ -34,7 +34,7 @@ public class MoveEffector : MonoBehaviour {
             }
         }
 
-        // Quick way to quit
+        // Quick way to quit out of engine (more profesh)
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
