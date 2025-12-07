@@ -1,6 +1,9 @@
 using ImGuiNET;
+using System;
 using UImGui;
 using UnityEngine;
+using UnityEngine.Diagnostics;
+using UnityEngine.InputSystem;
 
 public class SpiderGUI : MonoBehaviour {
     [SerializeField] private UImGui.UImGui instance;
@@ -9,7 +12,7 @@ public class SpiderGUI : MonoBehaviour {
 
     private void Awake() {
         if (instance == null) {
-            Debug.LogError("");
+            Debug.LogError("Missing hook into U Im Gui");
         }
 
         instance.Layout += OnLayout;
@@ -18,7 +21,8 @@ public class SpiderGUI : MonoBehaviour {
     }
 
     private void OnLayout(UImGui.UImGui obj) {
-        if (!ImGui.Begin("Adv Anim Final", ref isOpen)) {
+        // Mouse Scroll is too slow, cant find fix so removing it entirely
+        if (!ImGui.Begin("Adv Anim Final", ref isOpen, ImGuiWindowFlags.NoScrollWithMouse)) {
             ImGui.End();
             return;
         }
@@ -85,6 +89,7 @@ public class SpiderGUI : MonoBehaviour {
             ImGui.Text("Duration Inverse: " + kfManager.clipController.keyframe.durationInv);
         }
     }
+
     private void OnInitialize(UImGui.UImGui obj) {
         // runs after UImGui.OnEnable();
     }

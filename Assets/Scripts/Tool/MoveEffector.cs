@@ -1,3 +1,4 @@
+using ImGuiNET;
 using UnityEngine;
 
 public class MoveEffector : MonoBehaviour {
@@ -7,25 +8,28 @@ public class MoveEffector : MonoBehaviour {
 
     private GameObject spawnedPrefab;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            Vector3 mousePixelPos = Input.mousePosition;
-            mousePixelPos.z = 20f;
+        // Preventing spawning of move effector if mouse is overlapping with ImGui UI - Jerry
+        if (!ImGui.GetIO().WantCaptureMouse) {
+            if (Input.GetKeyDown(KeyCode.Mouse0)) {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            Vector3 mouseWorldPosition = cam.ScreenToWorldPoint(mousePixelPos);
-            mouseWorldPosition.z = 0f;
-
-            if (spawnedPrefab == null) {
-                spawnedPrefab = Instantiate(prefab, mouseWorldPosition, Quaternion.identity);
-            } else {
-                spawnedPrefab.transform.position = mouseWorldPosition;
+                if (Physics.Raycast(ray, out RaycastHit hit)) {
+                    Vector3 spawn = hit.point + new Vector3(0, 1, 0);
+                    if (hit.transform.tag == "Floor") {
+                        if (spawnedPrefab == null) {
+                            spawnedPrefab = Instantiate(prefab, spawn, Quaternion.identity);
+                        } else {
+                            spawnedPrefab.transform.position = spawn;
+                        }
+                    }
+                }
             }
-        }
+        } 
     }
 }
