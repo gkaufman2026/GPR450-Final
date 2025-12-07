@@ -50,12 +50,12 @@ MonoBehaviour:
     keyframeIndex: 0
     clipTimeStep: 0
     keyframeTimeStep: 0
-    playbackStep: 1
     clipTimeSec: 0
     keyframeSec: 0
-    playbackSec: 10
-    playbackStepPerSec: 10
-    playbackSecPerStep: 10
+    playbackSec: 2
+    playbackStepPerSec: 5
+    playbackSecPerStep: 5
+    playbackStep: 100
     clipParam: 0
     keyframeParam: 0
     clipPool:
@@ -155,4 +155,5 @@ MonoBehaviour:
       durationInSteps: 0
       durationSec: 0
       durationInv: 0
+  isPlaying: 1
   keyframeStartOffset: 4

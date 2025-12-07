@@ -7,6 +7,7 @@ public class KeyframeManager : MonoBehaviour {
     public ClipController clipController;
 
     [Header("Settings")]
+    public bool isPlaying = true;
     public int keyframeStartOffset = 4;
     private int index;
 
@@ -45,6 +46,8 @@ public class KeyframeManager : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-        KeyframeAnimController.Update(clipController, Time.fixedDeltaTime);
+        if (isPlaying) {
+            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime);
+        }
     }
 }
