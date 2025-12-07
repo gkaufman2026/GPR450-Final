@@ -1,9 +1,11 @@
 using ImGuiNET;
+using System;
 using UnityEngine;
 
 public class MoveEffector : MonoBehaviour {
 
     [SerializeField] private GameObject prefab;
+    [SerializeField] private Vector3 spawnOffset;
     [SerializeField] private Camera cam;
 
     private GameObject spawnedPrefab;
@@ -21,7 +23,7 @@ public class MoveEffector : MonoBehaviour {
 
                 if (Physics.Raycast(ray, out RaycastHit hit)) {
                     Vector3 spawn = hit.point + new Vector3(0, 1, 0);
-                    if (hit.transform.tag == "Floor") {
+                    if (hit.transform.CompareTag("Floor")) {
                         if (spawnedPrefab == null) {
                             spawnedPrefab = Instantiate(prefab, spawn, Quaternion.identity);
                         } else {
@@ -30,6 +32,11 @@ public class MoveEffector : MonoBehaviour {
                     }
                 }
             }
-        } 
+        }
+
+        // Quick way to quit
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
     }
 }

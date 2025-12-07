@@ -1,14 +1,15 @@
 using ImGuiNET;
-using System;
-using UImGui;
 using UnityEngine;
-using UnityEngine.Diagnostics;
-using UnityEngine.InputSystem;
 
 public class SpiderGUI : MonoBehaviour {
     [SerializeField] private UImGui.UImGui instance;
     [SerializeField] private KeyframeManager kfManager;
     [SerializeField] private bool isOpen = true;
+
+    // Saved Vars
+    private int startKFIndex;
+    private float startPlaybackSec;
+
 
     private void Awake() {
         if (instance == null) {
@@ -18,6 +19,9 @@ public class SpiderGUI : MonoBehaviour {
         instance.Layout += OnLayout;
         instance.OnInitialize += OnInitialize;
         instance.OnDeinitialize += OnDeinitialize;
+
+        startKFIndex = kfManager.clipController.keyframeIndex;
+        startPlaybackSec = kfManager.clipController.playbackSec;
     }
 
     private void OnLayout(UImGui.UImGui obj) {
@@ -34,6 +38,12 @@ public class SpiderGUI : MonoBehaviour {
 
     private void init() {
         ImGui.Checkbox("Is Playing", ref kfManager.isPlaying);
+        ImGui.SameLine();
+        ImGui.Dummy(new Vector2(135, 0)); // Creates space on X-axis between checkbox & button
+        ImGui.SameLine();
+        if (ImGui.Button("Reset Clip Ctrl")) {
+            resetClipCtrl();
+        }
 
         if (ImGui.CollapsingHeader("Clip Controller")) {
             initClipController();
@@ -42,7 +52,7 @@ public class SpiderGUI : MonoBehaviour {
 
     private void initClipController() {
         ImGui.Text("Name: " + kfManager.clipController.name);
-        ImGui.Text("Keyframe Index: " + kfManager.clipController.keyframeIndex);
+        ImGui.SliderInt("Keyframe Index", ref kfManager.clipController.keyframeIndex, 0, kfManager.clipController.clip.finalIndex);
         ImGui.Text("Clip Time Sec: " + kfManager.clipController.clipTimeSec.ToString("f"));
         ImGui.Text("Keyframe Time Sec: " + kfManager.clipController.keyframeSec.ToString("f"));
         ImGui.SliderFloat("Playback Sec", ref kfManager.clipController.playbackSec, 1, 100);
@@ -88,6 +98,11 @@ public class SpiderGUI : MonoBehaviour {
             ImGui.Text("Duration In Sec: " + kfManager.clipController.keyframe.durationSec);
             ImGui.Text("Duration Inverse: " + kfManager.clipController.keyframe.durationInv);
         }
+    }
+
+    private void resetClipCtrl() {
+        kfManager.clipController.keyframeIndex = startKFIndex;
+        kfManager.clipController.playbackSec = startPlaybackSec;
     }
 
     private void OnInitialize(UImGui.UImGui obj) {
