@@ -2,6 +2,7 @@ using UnityEngine;
 using static KeyframeAnimController;
 
 public class KeyframeManager : MonoBehaviour {
+
     [Header("Animation")]
     public ClipController clipController;
 
@@ -10,7 +11,6 @@ public class KeyframeManager : MonoBehaviour {
     private int index;
 
     private int hClipCount, hSampleCount, hKeyframeCount;
-
     private const int FRAME_RATE = 24;
 
     void Start() {
@@ -20,6 +20,9 @@ public class KeyframeManager : MonoBehaviour {
         init();
     }
 
+    /// <summary>
+    /// Handles Setup of Clip Controller - Jerry
+    /// </summary>
     private void init() {
         for (int i = 0; i < hSampleCount - 1; ++i) {
             KeyframeController.sampleInit(clipController.clipPool.samples[i], i, FRAME_RATE);

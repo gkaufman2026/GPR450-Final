@@ -593,162 +593,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &624305760
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 624305762}
-  - component: {fileID: 624305761}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &624305761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624305760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be990958e14c144fae305074709bd0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clipController:
-    name: spider
-    clipIndex: 0
-    keyframeIndex: 0
-    clipTimeStep: 0
-    keyframeTimeStep: 0
-    playbackStep: 0
-    clipTimeSec: 0
-    keyframeSec: 0
-    playbackSec: 10
-    playbackStepPerSec: 10
-    playbackSecPerStep: 10
-    clipParam: 0
-    keyframeParam: 0
-    clipPool:
-      clips:
-      - name: spider
-        index: 0
-        firstIndex: 0
-        finalIndex: 4
-        keyframeCount: 5
-        keyframeDirection: 1
-        durationInStep: 200
-        durationSec: 6.6
-        durationInv: 0.15
-        forward:
-          offset: 0
-          clipIndex: 1
-          flag: 0
-        reverse:
-          offset: 0
-          clipIndex: 0
-          flag: 5
-      keyframes:
-      - index: 0
-        sampleIndex0: 1
-        sampleIndex1: 2
-        durationInSteps: 30
-        durationSec: 1
-        durationInv: 1
-      - index: 1
-        sampleIndex0: 2
-        sampleIndex1: 3
-        durationInSteps: 40
-        durationSec: 1
-        durationInv: 1
-      - index: 2
-        sampleIndex0: 3
-        sampleIndex1: 4
-        durationInSteps: 45
-        durationSec: 1
-        durationInv: 1
-      - index: 3
-        sampleIndex0: 4
-        sampleIndex1: 5
-        durationInSteps: 5
-        durationSec: 1
-        durationInv: 1
-      - index: 4
-        sampleIndex0: 5
-        sampleIndex1: 6
-        durationInSteps: 80
-        durationSec: 3
-        durationInv: 0
-      samples:
-      - index: 0
-        timeStep: 0
-        timeSec: 0
-      - index: 1
-        timeStep: 0
-        timeSec: 0
-      - index: 2
-        timeStep: 30
-        timeSec: 1
-      - index: 3
-        timeStep: 70
-        timeSec: 1
-      - index: 4
-        timeStep: 115
-        timeSec: 2
-      - index: 5
-        timeStep: 120
-        timeSec: 4
-      - index: 6
-        timeStep: 200
-        timeSec: 7
-    clip:
-      name: 
-      index: 0
-      firstIndex: 0
-      finalIndex: 0
-      keyframeCount: 0
-      keyframeDirection: 0
-      durationInStep: 0
-      durationSec: 0
-      durationInv: 0
-      forward:
-        offset: 0
-        clipIndex: 0
-        flag: 0
-      reverse:
-        offset: 0
-        clipIndex: 0
-        flag: 0
-    keyframe:
-      index: 0
-      sampleIndex0: 0
-      sampleIndex1: 0
-      durationInSteps: 0
-      durationSec: 0
-      durationInv: 0
-  keyframeStartOffset: 4
---- !u!4 &624305762
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624305760}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,6 +1183,87 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 13.152, z: 10.159}
+--- !u!1001 &4156404428465576676
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1814737910416703362, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_Name
+      value: Keyframe Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: clipController.clipTimeSec
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: clipController.keyframeSec
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: clipController.playbackSec
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: clipController.clipTimeStep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: clipController.playbackStep
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: clipController.keyframeTimeStep
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299900354384909790, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1353,4 +1278,4 @@ SceneRoots:
   - {fileID: 394440602}
   - {fileID: 961659818}
   - {fileID: 175495193}
-  - {fileID: 624305762}
+  - {fileID: 4156404428465576676}
