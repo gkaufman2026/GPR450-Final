@@ -1280,6 +1280,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 13.152, z: 10.159}
+--- !u!1 &1810047626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1810047628}
+  - component: {fileID: 1810047627}
+  m_Layer: 0
+  m_Name: SpiderAnimations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1810047627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810047626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75cf4971f312600428380ab5ec12f4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: -8630255481318907545, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: 4620054247441459825, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: -5352899438774987056, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: 5753183498273514941, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: -2854112682037779205, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: -2854112682037779205, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: -7399824442847366147, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+  - {fileID: 7740101869355948835, guid: 06c70a5eae115e24d9b9ad881be0890f, type: 3}
+--- !u!4 &1810047628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810047626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1813426378 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
@@ -1481,5 +1534,6 @@ SceneRoots:
   - {fileID: 175495193}
   - {fileID: 4156404428465576676}
   - {fileID: 1228683234}
+  - {fileID: 1810047628}
   - {fileID: 2087351476}
   - {fileID: 2068364021}
