@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class BlendNodes : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    //Near
+    //Lerp
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
