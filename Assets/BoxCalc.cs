@@ -18,6 +18,8 @@ public class BoxCalc : MonoBehaviour
     [SerializeField] public float snapDistance = 0.57f;
     [Range(0, 1)]
     [SerializeField] public float legSmoothing = 0.4f;
+    [Range(0, 10)]
+    [SerializeField] public float legJitter = 1f;
 
     private void Update()
     {
@@ -53,12 +55,13 @@ public class BoxCalc : MonoBehaviour
         {
             float t = totalTime / legSmoothing;
 
-            arrTargets[index].target.transform.position = Vector3.Lerp(tar, tracker, t);
+            arrTargets[index].target.transform.position = Vector3.Lerp(tar, tracker + new Vector3 (0,MathF.Sin(t *MathF.PI) * 0.2f, 0), t);
 
             totalTime += Time.deltaTime;
 
             yield return null;
         }
-        
+
+        arrTargets[index].target.transform.position = tracker;
     }
 }
