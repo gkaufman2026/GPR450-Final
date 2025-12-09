@@ -13,6 +13,7 @@ public class SpiderGUI : MonoBehaviour {
 
     private List<FabrikIK> fabrik;
     private MoveEffector moveEffector;
+    private BoxCalc boxCalc;
 
     // Saved Vars
     private int startKFIndex;
@@ -27,6 +28,7 @@ public class SpiderGUI : MonoBehaviour {
 
         if (spider != null) {
             fabrik = spider.GetComponentsInChildren<FabrikIK>().ToList();
+            boxCalc = spider.GetComponentInChildren<BoxCalc>();
         }
 
         moveEffector = GetComponent<MoveEffector>();
@@ -153,6 +155,7 @@ public class SpiderGUI : MonoBehaviour {
     private void initSpiderOptions() {
         ImGui.SliderFloat("Effector Speed", ref kfManager.effectorSpeed, 1, 100);
         ImGui.SliderFloat3("Effector Offset", ref moveEffector.spawnOffset, 0, 5);
+        ImGui.ColorEdit3("Run Color", ref boxCalc.color);
 
         if (ImGui.CollapsingHeader("Toes")) {
             for (int i = 0; i < fabrik.Count; i++) { 

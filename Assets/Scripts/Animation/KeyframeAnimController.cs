@@ -99,7 +99,7 @@ public class KeyframeAnimController {
             clipCtrl.clipTimeSec += dt;
             clipCtrl.keyframeSec += dt;
 
-            bodyMovement.clip_Update();
+            bodyMovement.clip_Update(dt, effectorSpeed);
 
             foreach(FabrikIK toe in iKs) {
                 toe.ResolveIK(dt);

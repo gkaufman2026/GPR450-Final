@@ -20,6 +20,11 @@ public class BoxCalc : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] public float legSmoothing = 0.4f;
 
+    public SkinnedMeshRenderer spiderRenderer;
+    private Color prevColor;
+    public Color spiderColor = Color.red;
+    [HideInInspector] public Vector3 color;
+
     private bool alternateLegCall = false;
     private Vector3 lastBodyUp;
 
@@ -27,10 +32,11 @@ public class BoxCalc : MonoBehaviour
     {
         lastBodyUp = transform.up;
         gameObject.tag = "Body";
-        
+        color = new(spiderColor.r, spiderColor.b, spiderColor.g);
+        prevColor = spiderRenderer.material.color;
     }
 
-    private void CalcDistance()
+    private void CalcDistance(float dt, float speed)
     {
         for (int i = 0; i < arrTargets.Count; i++)
         {
@@ -45,7 +51,7 @@ public class BoxCalc : MonoBehaviour
                 if (i == 0 || i == 1)
                 {
                     //calls two pairs of leggs
-                    StartCoroutine(LerpLeg(arrTargets[i].target.position, arrTargets[i].tracker.transform.position, i, true));
+                    StartCoroutine(LerpLeg(arrTargets[i].target.position, arrTargets[i].tracker.transform.position, i, true, speed, dt));
                 }
 
             }
@@ -59,20 +65,20 @@ public class BoxCalc : MonoBehaviour
         }
     }
 
-    private void handleOddLeggs()
+    private void handleOddLeggs(float speed,float dt)
     {
         for (int i = 2; i < 4; i++)
         {
             //handles movement for offlegs simulating spider movement
-            StartCoroutine(LerpLeg(arrTargets[2].target.position, arrTargets[2].tracker.transform.position, 2, true));
-            StartCoroutine(LerpLeg(arrTargets[3].target.position, arrTargets[3].tracker.transform.position, 3, false));
+            StartCoroutine(LerpLeg(arrTargets[2].target.position, arrTargets[2].tracker.transform.position, 2, true, speed, dt));
+            StartCoroutine(LerpLeg(arrTargets[3].target.position, arrTargets[3].tracker.transform.position, 3, false, speed, dt));
             alternateLegCall = false;
         }
 
     }
 
     //smooths the leg movement to the location
-    IEnumerator LerpLeg(Vector3 tar, Vector3 tracker, int index, bool callLeg)
+    IEnumerator LerpLeg(Vector3 tar, Vector3 tracker, int index, bool callLeg, float speed, float dt)
     {
 
         float totalTime = 0;
@@ -81,9 +87,24 @@ public class BoxCalc : MonoBehaviour
         {
             float t = totalTime / legSmoothing;
 
-            arrTargets[index].target.transform.position = BlendNodes.LerpVec3(tar, tracker + new Vector3(0, MathF.Sin(t * MathF.PI) * 0.2f, 0), t);
+            if(speed > 40) //run anim
+            {
+                arrTargets[index].target.transform.position = BlendNodes.LerpVec3(tar, tracker + new Vector3(0, MathF.Sin(t * MathF.PI) * 0.5f, 0), t);
+                snapDistance = 0.5f;
+                Color matColor = spiderRenderer.material.color;
+                spiderColor = new Color(color.x, color.y, color.z, 1);
+                spiderRenderer.material.color = Color.Lerp(matColor, spiderColor, t); 
 
-            totalTime += Time.deltaTime;
+            }
+            else //walk anim
+            {
+                arrTargets[index].target.transform.position = BlendNodes.LerpVec3(tar, tracker + new Vector3(0, MathF.Sin(t * MathF.PI) * 0.2f, 0), t);
+                snapDistance = 0.2f;
+                Color matColor = spiderRenderer.material.color;
+                spiderRenderer.material.color = Color.Lerp(matColor, prevColor, t);
+            }
+                
+            totalTime += dt;
 
             yield return null;
         }
@@ -96,23 +117,22 @@ public class BoxCalc : MonoBehaviour
 
     void rotateBody()
     {
-
         Vector3 v1 = arrTargets[0].target.position - arrTargets[1].target.position;
         Vector3 v2 = arrTargets[2].target.position - arrTargets[3].target.position;
         Vector3 normal = Vector3.Cross(v1, v2).normalized;
-        Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(8));
+        Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1 / 8);
         transform.up = up;
         transform.rotation = Quaternion.LookRotation(transform.parent.forward, up);
         lastBodyUp = transform.up;
     }
 
-    public void clip_Update()
+    public void clip_Update(float dt, float speed)
     {
-        CalcDistance();
+        CalcDistance(dt, speed);
 
         if (alternateLegCall)
         {
-            handleOddLeggs();
+            handleOddLeggs(speed, dt);
         }
 
         rotateBody();
