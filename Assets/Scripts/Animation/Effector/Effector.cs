@@ -8,7 +8,7 @@ public class Effector : MonoBehaviour {
     // Ensuring any effector game object has the tag
     private void Start() {
         gameObject.tag = EFFECTOR_TAG;
-
+        
         body = GameObject.FindGameObjectWithTag("Body");
     }
 

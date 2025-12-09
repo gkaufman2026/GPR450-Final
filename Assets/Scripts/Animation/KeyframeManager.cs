@@ -14,6 +14,7 @@ public class KeyframeManager : MonoBehaviour {
     public float effectorSpeed = 15;
 
     private List<FabrikIK> fabrikIKs;
+    private BoxCalc boxMovement;
 
     [Header("Settings")]
     public bool isPlaying = true;
@@ -29,6 +30,7 @@ public class KeyframeManager : MonoBehaviour {
 
         if (spider != null) {
             fabrikIKs = spider.GetComponentsInChildren<FabrikIK>().ToList();
+            boxMovement = spider.GetComponentInChildren<BoxCalc>();
         }
 
         init();
@@ -61,7 +63,7 @@ public class KeyframeManager : MonoBehaviour {
     void FixedUpdate() {
         // Allowing the clip time to be paused
         if (isPlaying) {
-            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime, fabrikIKs, effector.Effector, effectorSpeed);
+            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime, fabrikIKs, effector.Effector, effectorSpeed, boxMovement);
         }
     }
 }
