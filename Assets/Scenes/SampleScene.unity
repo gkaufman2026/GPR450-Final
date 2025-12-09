@@ -276,16 +276,16 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4989476675865270, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 396993896}
-    - targetCorrespondingSourceObject: {fileID: 4989476675865270, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2061766351}
     - targetCorrespondingSourceObject: {fileID: 4989476675865270, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 130881275}
+      addedObject: {fileID: 396993896}
     - targetCorrespondingSourceObject: {fileID: 4989476675865270, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1582824045}
+    - targetCorrespondingSourceObject: {fileID: 4989476675865270, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 130881275}
     - targetCorrespondingSourceObject: {fileID: 4295625707076348, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
       insertIndex: -1
       addedObject: {fileID: 343234457}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 130881279}
   - component: {fileID: 130881280}
   m_Layer: 0
-  m_Name: Target3
+  m_Name: Target4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,15 +560,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrTargets:
-  - target: {fileID: 396993896}
-    tracker: {fileID: 343234456}
   - target: {fileID: 2061766351}
+    tracker: {fileID: 343234456}
+  - target: {fileID: 396993896}
     tracker: {fileID: 1745459418}
-  - target: {fileID: 130881275}
-    tracker: {fileID: 1105778616}
   - target: {fileID: 1582824045}
+    tracker: {fileID: 1105778616}
+  - target: {fileID: 130881275}
     tracker: {fileID: 217454873}
   snapDistance: 0.57
+  legSmoothing: 0.2
+  dt: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ecc64db8a91d64eb0ce595918e8194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 396993896}
+  target: {fileID: 2061766351}
   effector: {fileID: 0}
   showGizmo: 1
   chainLength: 3
@@ -845,7 +847,7 @@ GameObject:
   - component: {fileID: 396993900}
   - component: {fileID: 396993901}
   m_Layer: 0
-  m_Name: Target1
+  m_Name: Target2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1105,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ecc64db8a91d64eb0ce595918e8194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 130881275}
+  target: {fileID: 1582824045}
   effector: {fileID: 0}
   showGizmo: 1
   chainLength: 3
@@ -1128,7 +1130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ecc64db8a91d64eb0ce595918e8194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2061766351}
+  target: {fileID: 396993896}
   effector: {fileID: 0}
   showGizmo: 1
   chainLength: 3
@@ -1205,7 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70ecc64db8a91d64eb0ce595918e8194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1582824045}
+  target: {fileID: 130881275}
   effector: {fileID: 0}
   showGizmo: 1
   chainLength: 3
@@ -1505,7 +1507,7 @@ GameObject:
   - component: {fileID: 1582824046}
   - component: {fileID: 1582824047}
   m_Layer: 0
-  m_Name: Target4
+  m_Name: Target3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1823,7 +1825,7 @@ GameObject:
   - component: {fileID: 2061766355}
   - component: {fileID: 2061766356}
   m_Layer: 0
-  m_Name: Target2
+  m_Name: Target1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

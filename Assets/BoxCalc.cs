@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoxCalc : MonoBehaviour
@@ -13,17 +15,18 @@ public class BoxCalc : MonoBehaviour
 
     [SerializeField] private List<Harch> arrTargets;
     [Range(0,1)]
-    [SerializeField] public float snapDistance = 0.57f; 
+    [SerializeField] public float snapDistance = 0.57f;
+    [Range(0, 1)]
+    [SerializeField] public float legSmoothing = 0.4f;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        CalcDistance();
     }
 
     private void FixedUpdate()
     {
-        CalcDistance();
+        
     }
 
 
@@ -36,8 +39,26 @@ public class BoxCalc : MonoBehaviour
                 MathF.Abs(dif.y) > snapDistance || 
                 MathF.Abs(dif.z) > snapDistance) //   :(
             {
-                arrTargets[i].target.position = Vector3.Lerp(arrTargets[i].target.position, arrTargets[i].tracker.transform.position, 1);
+                StartCoroutine(LerpLeg(arrTargets[i].target.position, arrTargets[i].tracker.transform.position, i));
+
             }
         }
+    }
+
+    IEnumerator LerpLeg(Vector3 tar, Vector3 tracker, int index)
+    {
+        float totalTime = 0;
+
+        while(totalTime < legSmoothing)
+        {
+            float t = totalTime / legSmoothing;
+
+            arrTargets[index].target.transform.position = Vector3.Lerp(tar, tracker, t);
+
+            totalTime += Time.deltaTime;
+
+            yield return null;
+        }
+        
     }
 }
