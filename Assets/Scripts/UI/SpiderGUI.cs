@@ -2,6 +2,7 @@ using ImGuiNET;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpiderGUI : MonoBehaviour {
     [SerializeField] private UImGui.UImGui instance;
@@ -56,11 +57,15 @@ public class SpiderGUI : MonoBehaviour {
         ImGui.Dummy(new Vector2(135, 0)); // Creates space on X-axis between checkbox & button
         ImGui.SameLine();
         if (ImGui.Button("Reset Values")) { reset(); }
-        //if (ImGui.Button("Reset Scene")) {  }
 
         if (ImGui.CollapsingHeader("Clip Controller")) { initClipController(); }
 
         if (ImGui.CollapsingHeader("Spider Settings")) { initSpiderOptions(); }
+
+        ImGui.BulletText("Escape to Quit Game");
+        ImGui.BulletText("LMB to Place Effector");
+        ImGui.BulletText("K to Destroy Effector");
+        if (ImGui.Button("Reset Scene")) { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
     }
 
     /// <summary>

@@ -42,5 +42,12 @@ public class MoveEffector : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
         }
+
+        if (Input.GetKeyDown(KeyCode.K)) {
+            Destroy(spawnedPrefab);
+            spawnedPrefab = null;
+            effector = null;
+            Effector = null;
+        }
     }
 }
