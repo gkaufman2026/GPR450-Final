@@ -32,7 +32,6 @@ public class BoxCalc : MonoBehaviour
         for(int i = 0; i < arrTargets.Count; i++)
         {
             Vector3 dif = arrTargets[i].target.position - arrTargets[i].tracker.transform.position;
-            Debug.Log(dif);
             if (MathF.Abs(dif.x) > snapDistance || 
                 MathF.Abs(dif.y) > snapDistance || 
                 MathF.Abs(dif.z) > snapDistance) //   :(
