@@ -87,7 +87,10 @@ public class KeyframeAnimController {
     /// </summary>
     /// <param name="clipCtrl"> Clip Controller </param>
     /// <param name="dt"> Time.fixedDeltaTime </param>
-    public static void Update(ClipController clipCtrl, float dt, List<FabrikIK> iKs) {
+    /// <param name="iKs"> Collection of all IK elements within scene </param>
+    /// <param name="effector"> Player driven effector </param>
+    /// <param name="effectorSpeed"> How fast effector pulls iks </param>
+    public static void Update(ClipController clipCtrl, float dt, List<FabrikIK> iKs, Effector effector, float effectorSpeed) {
         if (clipCtrl != null && clipCtrl.clipPool != null) {
             float overstep;
 
@@ -98,6 +101,10 @@ public class KeyframeAnimController {
 
             foreach(FabrikIK toe in iKs) {
                 toe.ResolveIK(dt);
+            }
+
+            if (effector) {
+                effector.Pull(dt, effectorSpeed);
             }
 
             // If the current keyframe time in seconds - current keyframes duration is >= 0

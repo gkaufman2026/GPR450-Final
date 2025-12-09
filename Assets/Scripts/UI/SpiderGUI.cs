@@ -15,6 +15,7 @@ public class SpiderGUI : MonoBehaviour {
     // Saved Vars
     private int startKFIndex;
     private float startPlaybackSec;
+    private float startingSpeed;
 
     private void Awake() {
         if (instance == null) {
@@ -33,6 +34,7 @@ public class SpiderGUI : MonoBehaviour {
         // Saving values loaded on RT
         startKFIndex = kfManager.clipController.keyframeIndex;
         startPlaybackSec = kfManager.clipController.playbackSec;
+        startingSpeed = kfManager.effectorSpeed;
     }
 
     private void OnLayout(UImGui.UImGui obj) {
@@ -53,7 +55,8 @@ public class SpiderGUI : MonoBehaviour {
         ImGui.SameLine();
         ImGui.Dummy(new Vector2(135, 0)); // Creates space on X-axis between checkbox & button
         ImGui.SameLine();
-        if (ImGui.Button("Reset Clip Ctrl")) { resetClipCtrl(); }
+        if (ImGui.Button("Reset Values")) { reset(); }
+        //if (ImGui.Button("Reset Scene")) {  }
 
         if (ImGui.CollapsingHeader("Clip Controller")) { initClipController(); }
 
@@ -117,6 +120,8 @@ public class SpiderGUI : MonoBehaviour {
     /// Creating all spider options for UI 
     /// </summary>
     private void initSpiderOptions() {
+        ImGui.SliderFloat("Effector Speed", ref kfManager.effectorSpeed, 1, 50);
+
         if (ImGui.CollapsingHeader("Toes")) {
             for (int i = 0; i < fabrik.Count; i++) { 
                 ImGui.SeparatorText("#" + i);
@@ -130,9 +135,10 @@ public class SpiderGUI : MonoBehaviour {
     /// <summary>
     /// Handles Reset of Clip Controller - Jerry
     /// </summary>
-    private void resetClipCtrl() {
+    private void reset() {
         kfManager.clipController.keyframeIndex = startKFIndex;
         kfManager.clipController.playbackSec = startPlaybackSec;
+        kfManager.effectorSpeed = startingSpeed;
     }
 
     private void OnInitialize(UImGui.UImGui obj) {

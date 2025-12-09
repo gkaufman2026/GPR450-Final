@@ -8,7 +8,10 @@ public class KeyframeManager : MonoBehaviour {
     [Header("Animation")]
     public ClipController clipController;
 
+    [Header("Required Hooks")]
     [SerializeField] private GameObject spider;
+    [SerializeField] private MoveEffector effector;
+    public float effectorSpeed = 15;
 
     private List<FabrikIK> fabrikIKs;
 
@@ -58,7 +61,7 @@ public class KeyframeManager : MonoBehaviour {
     void FixedUpdate() {
         // Allowing the clip time to be paused
         if (isPlaying) {
-            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime, fabrikIKs);
+            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime, fabrikIKs, effector.Effector, effectorSpeed);
         }
     }
 }

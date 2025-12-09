@@ -1,5 +1,4 @@
 using ImGuiNET;
-using System;
 using UnityEngine;
 
 public class MoveEffector : MonoBehaviour {
@@ -9,6 +8,9 @@ public class MoveEffector : MonoBehaviour {
     [SerializeField] private Camera cam;
 
     private GameObject spawnedPrefab;
+    private Effector effector;
+
+    public Effector Effector { get => effector; set => effector = value; }
 
     void Start() {
         cam = Camera.main;
@@ -26,8 +28,10 @@ public class MoveEffector : MonoBehaviour {
                     if (hit.transform.CompareTag("Floor")) {
                         if (spawnedPrefab == null) {
                             spawnedPrefab = Instantiate(prefab, spawn, Quaternion.identity);
+                            Effector = spawnedPrefab.AddComponent<Effector>();
+                            
                         } else {
-                            spawnedPrefab.transform.position = spawn;
+                            Effector.transform.position = spawn;
                         }
                     }
                 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Effector
   - Floor
+  - Body
   layers:
   - Default
   - TransparentFX
