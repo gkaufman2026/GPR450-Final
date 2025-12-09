@@ -22,6 +22,8 @@ public class FabrikIK : MonoBehaviour
     public Transform target;
     public Transform effector;
 
+    public bool showGizmo = true;
+
     // Chain length of bones
     [Range(0, 10)]
     public int chainLength = 1;
@@ -245,16 +247,17 @@ public class FabrikIK : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        //visualizes FABRIK
-        var current = this.transform;
-        for (int i = 0; i < chainLength && current != null && current.parent != null; i++)
-        {
-            var scale = Vector3.Distance(current.position, current.parent.position) * 0.1f;
-            Handles.matrix = Matrix4x4.TRS(current.position, Quaternion.FromToRotation(Vector3.up, current.parent.position - current.position), new Vector3(scale, Vector3.Distance(current.parent.position, current.position), scale));
-            Handles.color = Color.red;
-            Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
-            current = current.parent;
+        if (showGizmo) {
+            //visualizes FABRIK
+            var current = this.transform;
+            for (int i = 0; i < chainLength && current != null && current.parent != null; i++)
+            {
+                var scale = Vector3.Distance(current.position, current.parent.position) * 0.1f;
+                Handles.matrix = Matrix4x4.TRS(current.position, Quaternion.FromToRotation(Vector3.up, current.parent.position - current.position), new Vector3(scale, Vector3.Distance(current.parent.position, current.position), scale));
+                Handles.color = Color.red;
+                Handles.DrawWireCube(Vector3.up * 0.5f, Vector3.one);
+                current = current.parent;
+            }
         }
     }
-
 }
