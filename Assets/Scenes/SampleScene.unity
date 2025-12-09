@@ -569,8 +569,7 @@ MonoBehaviour:
   - target: {fileID: 130881275}
     tracker: {fileID: 217454873}
   snapDistance: 0.57
-  legSmoothing: 0.2
-  dt: 0
+  legSmoothing: 0.15
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,6 +1918,10 @@ PrefabInstance:
       propertyPath: effector
       value: 
       objectReference: {fileID: 330585548}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: effectorSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
       propertyPath: clipController.clip.name
       value: spider

@@ -125,7 +125,7 @@ public class SpiderGUI : MonoBehaviour {
         if (ImGui.CollapsingHeader("Toes")) {
             for (int i = 0; i < fabrik.Count; i++) { 
                 ImGui.SeparatorText("#" + i);
-                ImGui.BulletText("Target: " + fabrik[i].target);
+                ImGui.BulletText("Target: " + fabrik[i].target.name);
                 ImGui.SliderInt("Iterations", ref fabrik[i].iterations, 0, 20);
                 ImGui.SliderFloat("Weight", ref fabrik[i].weight, 0, 1);
             }
