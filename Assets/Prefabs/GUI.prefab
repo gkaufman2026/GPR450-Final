@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2482980267863275103}
   - component: {fileID: 7581825671425065765}
   - component: {fileID: 3372071314190529270}
+  - component: {fileID: 1007490724546963841}
   m_Layer: 0
   m_Name: GUI
   m_TagString: Untagged
@@ -54,7 +55,7 @@ MonoBehaviour:
     ImGuiConfig: 65
     DoubleClickTime: 0.3
     DoubleClickMaxDist: 6
-    DragThreshold: 6
+    DragThreshold: 10
     KeyRepeatDelay: 0.25
     KeyRepeatRate: 0.05
     FontGlobalScale: 1
@@ -90,4 +91,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instance: {fileID: 7581825671425065765}
   kfManager: {fileID: 0}
+  spider: {fileID: 0}
   isOpen: 1
+  cameras:
+  - {fileID: 0}
+--- !u!114 &1007490724546963841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5538009583498665240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc54edb1e684874408e4babe04c09dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1345366475598493903, guid: 37b289e8f5a8f5846b5752f5f16ec27a, type: 3}
+  spawnOffset: {x: 0, y: 1, z: 0}
+  cam: {fileID: 0}

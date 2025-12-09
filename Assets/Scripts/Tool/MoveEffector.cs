@@ -4,16 +4,17 @@ using UnityEngine;
 public class MoveEffector : MonoBehaviour {
 
     [SerializeField] private GameObject prefab;
-    [SerializeField] private Vector3 spawnOffset;
+    [SerializeField] public Vector3 spawnOffset;
     [SerializeField] private Camera cam;
 
     private GameObject spawnedPrefab;
     private Effector effector;
 
     public Effector Effector { get => effector; set => effector = value; }
+    public Camera Cam { get => cam; set => cam = value; }
 
     void Start() {
-        cam = Camera.main;
+        Cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class MoveEffector : MonoBehaviour {
         // Preventing spawning of move effector if mouse is overlapping with ImGui UI - Jerry
         if (!ImGui.GetIO().WantCaptureMouse) {
             if (Input.GetKeyDown(KeyCode.Mouse0)) {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit)) {
                     Vector3 spawn = hit.point + spawnOffset;

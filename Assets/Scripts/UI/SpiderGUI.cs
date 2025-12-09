@@ -1,6 +1,8 @@
 using ImGuiNET;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,14 +11,16 @@ public class SpiderGUI : MonoBehaviour {
     [SerializeField] private KeyframeManager kfManager;
     [SerializeField] private GameObject spider;
     [SerializeField] private bool isOpen = true;
+    [SerializeField] private List<Camera> cameras;
 
-    // 
     private List<FabrikIK> fabrik;
+    private MoveEffector moveEffector;
 
     // Saved Vars
     private int startKFIndex;
     private float startPlaybackSec;
     private float startingSpeed;
+    private Vector3 startEffectorOffset;
 
     private void Awake() {
         if (instance == null) {
@@ -27,6 +31,8 @@ public class SpiderGUI : MonoBehaviour {
             fabrik = spider.GetComponentsInChildren<FabrikIK>().ToList();
         }
 
+        moveEffector = GetComponent<MoveEffector>();
+
         // Event listener
         instance.Layout += OnLayout;
         instance.OnInitialize += OnInitialize;
@@ -36,6 +42,9 @@ public class SpiderGUI : MonoBehaviour {
         startKFIndex = kfManager.clipController.keyframeIndex;
         startPlaybackSec = kfManager.clipController.playbackSec;
         startingSpeed = kfManager.effectorSpeed;
+        startEffectorOffset = moveEffector.spawnOffset;
+
+        EnableCamera(0);
     }
 
     private void OnLayout(UImGui.UImGui obj) {
@@ -62,10 +71,29 @@ public class SpiderGUI : MonoBehaviour {
 
         if (ImGui.CollapsingHeader("Spider Settings")) { initSpiderOptions(); }
 
+        if (ImGui.CollapsingHeader("Camera Options")) {
+            initCameraOptions();
+        }
+
         ImGui.BulletText("Escape to Quit Game");
         ImGui.BulletText("LMB to Place Effector");
         ImGui.BulletText("K to Destroy Effector");
         if (ImGui.Button("Reset Scene")) { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    }
+
+    private void initCameraOptions() {
+        for (int i = 0; i < cameras.Count; i++) {
+            if (ImGui.Button(cameras[i].gameObject.name)) {
+                EnableCamera(i);
+            }
+        }
+    }
+
+    private void EnableCamera(int n) {
+        cameras.ForEach(cam => cam.gameObject.SetActive(false));
+        cameras[n].gameObject.SetActive(true);
+        instance.SetCamera(cameras[n]);
+        moveEffector.Cam = cameras[n];
     }
 
     /// <summary>
@@ -126,6 +154,7 @@ public class SpiderGUI : MonoBehaviour {
     /// </summary>
     private void initSpiderOptions() {
         ImGui.SliderFloat("Effector Speed", ref kfManager.effectorSpeed, 1, 50);
+        ImGui.SliderFloat3("Effector Offset", ref moveEffector.spawnOffset, 0, 5);
 
         if (ImGui.CollapsingHeader("Toes")) {
             for (int i = 0; i < fabrik.Count; i++) { 
@@ -144,6 +173,7 @@ public class SpiderGUI : MonoBehaviour {
         kfManager.clipController.keyframeIndex = startKFIndex;
         kfManager.clipController.playbackSec = startPlaybackSec;
         kfManager.effectorSpeed = startingSpeed;
+        moveEffector.spawnOffset = startEffectorOffset;
     }
 
     private void OnInitialize(UImGui.UImGui obj) {
