@@ -238,6 +238,7 @@ public class FabrikIK : MonoBehaviour
 
     void OnDrawGizmos()
     {
+#if UNITY_EDITOR
         if (showGizmo) {
             //visualizes FABRIK
             var current = this.transform;
@@ -250,5 +251,6 @@ public class FabrikIK : MonoBehaviour
                 current = current.parent;
             }
         }
+#endif
     }
 }
