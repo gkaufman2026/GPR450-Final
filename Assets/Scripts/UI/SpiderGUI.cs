@@ -1,10 +1,16 @@
 using ImGuiNET;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpiderGUI : MonoBehaviour {
     [SerializeField] private UImGui.UImGui instance;
     [SerializeField] private KeyframeManager kfManager;
+    [SerializeField] private GameObject spider;
     [SerializeField] private bool isOpen = true;
+
+    // 
+    private List<FabrikIK> fabrik;
 
     // Saved Vars
     private int startKFIndex;
@@ -13,6 +19,10 @@ public class SpiderGUI : MonoBehaviour {
     private void Awake() {
         if (instance == null) {
             Debug.LogError("Missing hook into U Im Gui");
+        }
+
+        if (spider != null) {
+            fabrik = spider.GetComponentsInChildren<FabrikIK>().ToList();
         }
 
         // Event listener
@@ -46,6 +56,8 @@ public class SpiderGUI : MonoBehaviour {
         if (ImGui.Button("Reset Clip Ctrl")) { resetClipCtrl(); }
 
         if (ImGui.CollapsingHeader("Clip Controller")) { initClipController(); }
+
+        if (ImGui.CollapsingHeader("Spider Settings")) { initSpiderOptions(); }
     }
 
     /// <summary>
@@ -98,6 +110,20 @@ public class SpiderGUI : MonoBehaviour {
             ImGui.Text("Duration In Steps: " + kfManager.clipController.keyframe.durationInSteps);
             ImGui.Text("Duration In Sec: " + kfManager.clipController.keyframe.durationSec);
             ImGui.Text("Duration Inverse: " + kfManager.clipController.keyframe.durationInv);
+        }
+    }
+
+    /// <summary>
+    /// Creating all spider options for UI 
+    /// </summary>
+    private void initSpiderOptions() {
+        if (ImGui.CollapsingHeader("Toes")) {
+            for (int i = 0; i < fabrik.Count; i++) { 
+                ImGui.SeparatorText("#" + i);
+                ImGui.BulletText("Target: " + fabrik[i].target);
+                ImGui.SliderInt("Iterations", ref fabrik[i].iterations, 0, 20);
+                ImGui.SliderFloat("Weight", ref fabrik[i].weight, 0, 1);
+            }
         }
     }
 

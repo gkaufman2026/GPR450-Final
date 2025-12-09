@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class KeyframeAnimController {
     /// <summary>
@@ -86,7 +87,7 @@ public class KeyframeAnimController {
     /// </summary>
     /// <param name="clipCtrl"> Clip Controller </param>
     /// <param name="dt"> Time.fixedDeltaTime </param>
-    public static void Update(ClipController clipCtrl, float dt) {
+    public static void Update(ClipController clipCtrl, float dt, List<FabrikIK> iKs) {
         if (clipCtrl != null && clipCtrl.clipPool != null) {
             float overstep;
 
@@ -94,6 +95,10 @@ public class KeyframeAnimController {
             dt *= clipCtrl.playbackSec;
             clipCtrl.clipTimeSec += dt;
             clipCtrl.keyframeSec += dt;
+
+            foreach(FabrikIK toe in iKs) {
+                toe.ResolveIK(dt);
+            }
 
             // If the current keyframe time in seconds - current keyframes duration is >= 0
             while ((overstep = clipCtrl.keyframeSec - clipCtrl.keyframe.durationSec) >= 0.0) {

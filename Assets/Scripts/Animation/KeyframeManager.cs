@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static KeyframeAnimController;
 
@@ -5,6 +7,10 @@ public class KeyframeManager : MonoBehaviour {
 
     [Header("Animation")]
     public ClipController clipController;
+
+    [SerializeField] private GameObject spider;
+
+    private List<FabrikIK> fabrikIKs;
 
     [Header("Settings")]
     public bool isPlaying = true;
@@ -17,6 +23,10 @@ public class KeyframeManager : MonoBehaviour {
     void Start() {
         hClipCount = clipController.clip.finalIndex;
         hSampleCount = clipController.clipPool.samples.Length;
+
+        if (spider != null) {
+            fabrikIKs = spider.GetComponentsInChildren<FabrikIK>().ToList();
+        }
 
         init();
     }
@@ -48,7 +58,7 @@ public class KeyframeManager : MonoBehaviour {
     void FixedUpdate() {
         // Allowing the clip time to be paused
         if (isPlaying) {
-            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime);
+            KeyframeAnimController.Update(clipController, Time.fixedDeltaTime, fabrikIKs);
         }
     }
 }
