@@ -49,7 +49,7 @@ public class SpiderGUI : MonoBehaviour {
 
     private void OnLayout(UImGui.UImGui obj) {
         // Mouse Scroll is too slow, cant find fix so removing it entirely
-        if (!ImGui.Begin("Adv Anim Final", ref isOpen, ImGuiWindowFlags.NoScrollWithMouse)) {
+        if (!ImGui.Begin("Adv Anim Final", ref isOpen)) {
             ImGui.End();
             return;
         }
@@ -153,7 +153,7 @@ public class SpiderGUI : MonoBehaviour {
     /// Creating all spider options for UI 
     /// </summary>
     private void initSpiderOptions() {
-        ImGui.SliderFloat("Effector Speed", ref kfManager.effectorSpeed, 1, 50);
+        ImGui.SliderFloat("Effector Speed", ref kfManager.effectorSpeed, 1, 100);
         ImGui.SliderFloat3("Effector Offset", ref moveEffector.spawnOffset, 0, 5);
 
         if (ImGui.CollapsingHeader("Toes")) {
