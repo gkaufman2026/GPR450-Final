@@ -36,9 +36,6 @@ public class FabrikIK : MonoBehaviour
     [Range(0, 1)]
     public float weight = 1f;
 
-    // Distance when the solver stops
-    public float dT = 0.001f;
-
     private float[] arrBoneLength;
     private float totalLength;
     private Transform[] arrBones;
@@ -103,13 +100,7 @@ public class FabrikIK : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        ResolveIK();
-    }
-
-    private void ResolveIK()
+    public void ResolveIK(float dT)
     {
         if (target == null)
             return;

@@ -827,10 +827,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 396993896}
   effector: {fileID: 0}
+  showGizmo: 1
   chainLength: 3
   iterations: 10
   weight: 1
-  dT: 0.001
 --- !u!1 &396993895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,10 +1107,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 130881275}
   effector: {fileID: 0}
+  showGizmo: 1
   chainLength: 3
   iterations: 10
   weight: 1
-  dT: 0.001
 --- !u!1 &658795516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1702936152346598, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
@@ -1130,10 +1130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2061766351}
   effector: {fileID: 0}
+  showGizmo: 1
   chainLength: 3
   iterations: 10
   weight: 1
-  dT: 0.001
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1183,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &900775719 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537008473948126, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
+  m_PrefabInstance: {fileID: 5467283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &962115830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1235833511060184, guid: 5c7f0950aa535ce4faef155ad244c136, type: 3}
@@ -1202,10 +1207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1582824045}
   effector: {fileID: 0}
+  showGizmo: 1
   chainLength: 3
   iterations: 10
   weight: 1
-  dT: 0.001
 --- !u!1 &1105778616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,6 +1345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3372071314190529270, guid: 1f310d274593d4547b470f89c704ddda, type: 3}
+      propertyPath: spider
+      value: 
+      objectReference: {fileID: 900775719}
     - target: {fileID: 3372071314190529270, guid: 1f310d274593d4547b470f89c704ddda, type: 3}
       propertyPath: kfManager
       value: 
@@ -2066,6 +2075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Keyframe Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
+      propertyPath: spider
+      value: 
+      objectReference: {fileID: 1638970511}
     - target: {fileID: 2809033077789615489, guid: 7ded2d21ed2947246a1f0ef2626e803f, type: 3}
       propertyPath: clipController.clip.name
       value: spider

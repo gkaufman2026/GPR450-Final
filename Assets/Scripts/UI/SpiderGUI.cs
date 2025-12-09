@@ -1,4 +1,6 @@
 using ImGuiNET;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpiderGUI : MonoBehaviour {
@@ -8,7 +10,7 @@ public class SpiderGUI : MonoBehaviour {
     [SerializeField] private bool isOpen = true;
 
     // 
-    private FabrikIK fabrik;
+    private List<FabrikIK> fabrik;
 
     // Saved Vars
     private int startKFIndex;
@@ -20,7 +22,7 @@ public class SpiderGUI : MonoBehaviour {
         }
 
         if (spider != null) {
-            fabrik = spider.GetComponentInChildren<FabrikIK>();
+            fabrik = spider.GetComponentsInChildren<FabrikIK>().ToList();
         }
 
         // Event listener
@@ -115,7 +117,14 @@ public class SpiderGUI : MonoBehaviour {
     /// Creating all spider options for UI 
     /// </summary>
     private void initSpiderOptions() {
-        ImGui.Checkbox("Shows Gizmo", ref fabrik.showGizmo);
+        if (ImGui.CollapsingHeader("Toes")) {
+            for (int i = 0; i < fabrik.Count; i++) { 
+                ImGui.SeparatorText("#" + i);
+                ImGui.BulletText("Target: " + fabrik[i].target);
+                ImGui.SliderInt("Iterations", ref fabrik[i].iterations, 0, 20);
+                ImGui.SliderFloat("Weight", ref fabrik[i].weight, 0, 1);
+            }
+        }
     }
 
     /// <summary>
