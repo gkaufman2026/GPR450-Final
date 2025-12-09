@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class BoxCalc : MonoBehaviour
 {
     [Serializable]
@@ -54,14 +55,15 @@ public class BoxCalc : MonoBehaviour
         while(totalTime < legSmoothing)
         {
             float t = totalTime / legSmoothing;
-
-            arrTargets[index].target.transform.position = Vector3.Lerp(tar, tracker + new Vector3 (0,MathF.Sin(t *MathF.PI) * 0.2f, 0), t);
+            
+            arrTargets[index].target.transform.position = BlendNodes.LerpVec3(tar, tracker + new Vector3 (0,MathF.Sin(t *MathF.PI) * 0.2f, 0), t);
 
             totalTime += Time.deltaTime;
 
             yield return null;
         }
 
+        
         arrTargets[index].target.transform.position = tracker;
     }
 }
