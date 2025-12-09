@@ -90,7 +90,7 @@ public class KeyframeAnimController {
     /// <param name="iKs"> Collection of all IK elements within scene </param>
     /// <param name="effector"> Player driven effector </param>
     /// <param name="effectorSpeed"> How fast effector pulls iks </param>
-    public static void Update(ClipController clipCtrl, float dt, List<FabrikIK> iKs, Effector effector, float effectorSpeed) {
+    public static void Update(ClipController clipCtrl, float dt, List<FabrikIK> iKs, Effector effector, float effectorSpeed, BoxCalc bodyMovement) {
         if (clipCtrl != null && clipCtrl.clipPool != null) {
             float overstep;
 
@@ -98,6 +98,8 @@ public class KeyframeAnimController {
             dt *= clipCtrl.playbackSec;
             clipCtrl.clipTimeSec += dt;
             clipCtrl.keyframeSec += dt;
+
+            bodyMovement.clip_Update();
 
             foreach(FabrikIK toe in iKs) {
                 toe.ResolveIK(dt);
@@ -128,6 +130,7 @@ public class KeyframeAnimController {
                     clipCtrl.keyframeIndex = clipCtrl.clip.finalIndex;
                     clipCtrl.keyframe = clipCtrl.clipPool.keyframes[clipCtrl.keyframeIndex];
                     clipCtrl.keyframeSec = overstep + clipCtrl.keyframe.durationSec;
+                    
                 } else {
                     clipCtrl.keyframeIndex -= clipCtrl.clip.keyframeDirection;
                     clipCtrl.keyframe = clipCtrl.clipPool.keyframes[clipCtrl.keyframeIndex];

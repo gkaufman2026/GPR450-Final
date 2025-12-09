@@ -26,18 +26,8 @@ public class BoxCalc : MonoBehaviour
     private void Start()
     {
         lastBodyUp = transform.up;
-    }
-
-    private void Update()
-    {
-        CalcDistance();
-
-        if (alternateLegCall)
-        {
-            handleOddLeggs();
-        }
-
-        //rotateBody();
+        gameObject.tag = "Body";
+        
     }
 
     private void CalcDistance()
@@ -114,5 +104,17 @@ public class BoxCalc : MonoBehaviour
         transform.up = up;
         transform.rotation = Quaternion.LookRotation(transform.parent.forward, up);
         lastBodyUp = transform.up;
+    }
+
+    public void clip_Update()
+    {
+        CalcDistance();
+
+        if (alternateLegCall)
+        {
+            handleOddLeggs();
+        }
+
+        rotateBody();
     }
 }
